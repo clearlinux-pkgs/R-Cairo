@@ -1,0 +1,22 @@
+--- a/Cairo/src/cairogd.c	2015-08-14 18:23:45.000000000 -0400
++++ b/Cairo/src/cairogd.c	2015-08-14 18:36:31.408147448 -0400
+@@ -18,6 +18,9 @@
+ #include "cairogd.h"
+ #include "cairotalk.h"
+ #include "img-backend.h"
++#undef TYPEOF
++#include <Rinternals.h>
++
+ 
+ double jGDdpiX = 100.0;
+ double jGDdpiY = 100.0;
+--- a/Cairo/src/cairotalk.c~	2015-07-29 11:45:51.000000000 -0400
++++ b/Cairo/src/cairotalk.c	2015-08-14 18:38:17.726818282 -0400
+@@ -12,6 +12,7 @@
+ #include "img-tiff.h" /* for TIFF_COMPR_LZW */
+ #include <Rversion.h>
+ #define USE_RINTERNALS 1
++#undef TYPEOF
+ #include <Rinternals.h>
+ 
+ /* Device Driver Actions */

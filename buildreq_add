@@ -1,0 +1,6 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+gcc-dev
+cairo-dev
+tiff-dev
+libjpeg-turbo-dev
