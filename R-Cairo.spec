@@ -4,7 +4,7 @@
 #
 Name     : R-Cairo
 Version  : 1.5
-Release  : 8
+Release  : 10
 URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-8.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-8.tar.gz
 Summary  : R graphics device using cairo graphics library for creating
@@ -16,7 +16,6 @@ BuildRequires : clr-R-helpers
 BuildRequires : gcc-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : pkgconfig(xt)
-BuildRequires : tiff-dev
 Patch1: build.patch
 
 %description
@@ -39,8 +38,10 @@ lib components for the R-Cairo package.
 %install
 rm -rf %{buildroot}
 export LANG=C
-export CFLAGS="$CFLAGS -O3 -flto -ffunction-sections -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -flto -ffunction-sections -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
