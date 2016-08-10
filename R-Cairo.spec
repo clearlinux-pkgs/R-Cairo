@@ -4,9 +4,9 @@
 #
 Name     : R-Cairo
 Version  : 1.5
-Release  : 14
-URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-8.tar.gz
-Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-8.tar.gz
+Release  : 15
+URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
+Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
 Summary  : R graphics device using cairo graphics library for creating
 Group    : Development/Tools
 License  : GPL-2.0
@@ -34,6 +34,7 @@ lib components for the R-Cairo package.
 %patch1 -p1
 
 %build
+export LANG=C
 
 %install
 rm -rf %{buildroot}
@@ -49,6 +50,7 @@ mkdir -p %{buildroot}/usr/lib64/R/library
 R CMD INSTALL --install-tests --build  -l %{buildroot}/usr/lib64/R/library Cairo
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
+export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost
