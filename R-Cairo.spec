@@ -4,7 +4,7 @@
 #
 Name     : R-Cairo
 Version  : 1.5
-Release  : 17
+Release  : 18
 URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
 Summary  : R graphics device using cairo graphics library for creating
@@ -35,6 +35,7 @@ lib components for the R-Cairo package.
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1484531062
 
 %install
 rm -rf %{buildroot}
@@ -47,7 +48,7 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
-R CMD INSTALL --install-tests --build  -l %{buildroot}/usr/lib64/R/library Cairo
+R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library Cairo
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
 export LANG=C
