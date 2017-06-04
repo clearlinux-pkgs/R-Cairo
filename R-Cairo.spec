@@ -4,7 +4,7 @@
 #
 Name     : R-Cairo
 Version  : 1.5.9
-Release  : 25
+Release  : 26
 URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
 Summary  : R graphics device using cairo graphics library for creating
@@ -38,11 +38,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1492795273
+export SOURCE_DATE_EPOCH=1496599020
 
 %install
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1492795273
+export SOURCE_DATE_EPOCH=1496599020
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -52,7 +52,22 @@ export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export LDFLAGS="$LDFLAGS  -Wl,-z -Wl,relro"
 mkdir -p %{buildroot}/usr/lib64/R/library
+
+mkdir -p ~/.R
+mkdir -p ~/.stash
+echo "CFLAGS = $CFLAGS -march=haswell -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library Cairo
+for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx2 ; mv $i.avx2 ~/.stash/; done
+echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
+R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library Cairo
+for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx512 ; mv $i.avx512 ~/.stash/; done
+rm ~/.R/Makevars
+R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library Cairo
+cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
 export LANG=C
@@ -61,6 +76,7 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library Cairo
+cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 
 
 %files
@@ -90,3 +106,5 @@ R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/lib
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/R/library/Cairo/libs/Cairo.so
+/usr/lib64/R/library/Cairo/libs/Cairo.so.avx2
+/usr/lib64/R/library/Cairo/libs/Cairo.so.avx512
