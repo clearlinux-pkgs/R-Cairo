@@ -4,7 +4,7 @@
 #
 Name     : R-Cairo
 Version  : 1.5.9
-Release  : 28
+Release  : 29
 URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
 Summary  : R graphics device using cairo graphics library for creating
@@ -38,11 +38,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1496604486
+export SOURCE_DATE_EPOCH=1502397223
 
 %install
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1496604486
+export SOURCE_DATE_EPOCH=1502397223
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
