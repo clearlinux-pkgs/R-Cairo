@@ -4,15 +4,15 @@
 #
 Name     : R-Cairo
 Version  : 1.5.9
-Release  : 47
+Release  : 48
 URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-9.tar.gz
 Summary  : R graphics device using cairo graphics library for creating
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: R-Cairo-lib
+Requires: R-Cairo-lib = %{version}-%{release}
+BuildRequires : buildreq-R
 BuildRequires : cairo-dev
-BuildRequires : clr-R-helpers
 BuildRequires : gcc-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : pkgconfig(xt)
@@ -38,11 +38,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523292586
+export SOURCE_DATE_EPOCH=1552724678
 
 %install
+export SOURCE_DATE_EPOCH=1552724678
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1523292586
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -77,8 +77,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library Cairo|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  Cairo || :
 
 
 %files
@@ -103,7 +102,6 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/Cairo/help/paths.rds
 /usr/lib64/R/library/Cairo/html/00Index.html
 /usr/lib64/R/library/Cairo/html/R.css
-/usr/lib64/R/library/Cairo/libs/symbols.rds
 
 %files lib
 %defattr(-,root,root,-)
