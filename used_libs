@@ -6,4 +6,5 @@ libfontconfig.so.1
 libfreetype.so.6
 libjpeg.so.62
 libpng16.so.16
+libtiff.so.5
 libz.so.1

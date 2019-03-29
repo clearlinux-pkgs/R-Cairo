@@ -1,2 +1,4 @@
-1.5.9
+1.5.10
 pkgconfig(xt)
+tiff-dev
+zlib-dev
