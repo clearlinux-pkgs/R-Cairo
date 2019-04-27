@@ -4,7 +4,7 @@
 #
 Name     : R-Cairo
 Version  : 1.5.10
-Release  : 55
+Release  : 56
 URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-10.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-10.tar.gz
 Summary  : R Graphics Device using Cairo Graphics Library for Creating
