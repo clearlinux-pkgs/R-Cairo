@@ -1,4 +1,5 @@
 1.5.10
 pkgconfig(xt)
 tiff-dev
+util-linux
 zlib-dev

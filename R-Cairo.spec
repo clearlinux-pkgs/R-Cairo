@@ -4,7 +4,7 @@
 #
 Name     : R-Cairo
 Version  : 1.5.10
-Release  : 58
+Release  : 59
 URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-10.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-10.tar.gz
 Summary  : R Graphics Device using Cairo Graphics Library for Creating
@@ -17,6 +17,7 @@ BuildRequires : gcc-dev
 BuildRequires : libjpeg-turbo-dev
 BuildRequires : pkgconfig(xt)
 BuildRequires : tiff-dev
+BuildRequires : util-linux
 BuildRequires : zlib-dev
 Patch1: build.patch
 
@@ -39,13 +40,13 @@ lib components for the R-Cairo package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1553878137
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1571806565
 
 %install
-export SOURCE_DATE_EPOCH=1553878137
+export SOURCE_DATE_EPOCH=1571806565
 rm -rf %{buildroot}
-export LANG=C
+export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -74,7 +75,7 @@ R CMD INSTALL --preclean --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} 
 cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 %{__rm} -rf %{buildroot}%{_datadir}/R/library/R.css
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
