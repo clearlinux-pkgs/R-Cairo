@@ -4,7 +4,7 @@
 #
 Name     : R-Cairo
 Version  : 1.5.12
-Release  : 64
+Release  : 65
 URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-12.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-12.tar.gz
 Summary  : R Graphics Device using Cairo Graphics Library for Creating
@@ -32,6 +32,7 @@ lib components for the R-Cairo package.
 
 %prep
 %setup -q -c -n Cairo
+cd %{_builddir}/Cairo
 %patch1 -p1
 
 %build
@@ -39,15 +40,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587060731
+export SOURCE_DATE_EPOCH=1589511262
 
 %install
-export SOURCE_DATE_EPOCH=1587060731
+export SOURCE_DATE_EPOCH=1589511262
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
