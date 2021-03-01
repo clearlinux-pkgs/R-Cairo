@@ -4,7 +4,7 @@
 #
 Name     : R-Cairo
 Version  : 1.5.12.2
-Release  : 68
+Release  : 69
 URL      : https://cran.r-project.org/src/contrib/Cairo_1.5-12.2.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/Cairo_1.5-12.2.tar.gz
 Summary  : R Graphics Device using Cairo Graphics Library for Creating
@@ -15,6 +15,7 @@ BuildRequires : buildreq-R
 BuildRequires : cairo-dev
 BuildRequires : gcc-dev
 BuildRequires : libjpeg-turbo-dev
+BuildRequires : pkgconfig(xt)
 BuildRequires : tiff-dev
 BuildRequires : zlib-dev
 Patch1: build.patch
@@ -40,10 +41,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1594141242
+export SOURCE_DATE_EPOCH=1614622296
 
 %install
-export SOURCE_DATE_EPOCH=1594141242
+export SOURCE_DATE_EPOCH=1614622296
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
