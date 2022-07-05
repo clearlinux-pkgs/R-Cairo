@@ -3,7 +3,12 @@ libX11.so.6
 libc.so.6
 libcairo.so.2
 libfreetype.so.6
+libharfbuzz-icu.so.0
+libharfbuzz.so.0
+libicudata.so.70
+libicuuc.so.70
 libjpeg.so.62
 libpng16.so.16
+libstdc++.so.6
 libtiff.so.5
 libz.so.1
